@@ -1,6 +1,7 @@
 import streamlit as st
 from KMeans_Meth import *
 from connecte import *
+from Color import *
 
 url='mongodb://localhost:27017/'
 collection =collection()
@@ -13,6 +14,8 @@ def main():
 
 
     st.markdown("<h1 style='text-align: center; color: red;'>Indexation Par Contenue</h1>", unsafe_allow_html=True)
+    rf = rgb_feature.ColorDescriptor((8, 8, 8))
+
 
     c = st.selectbox("Choisir une option", ["Télécharger une image", "Télecharger CSV"]);
     if c == "Télécharger une image":
@@ -24,6 +27,7 @@ def main():
             file_details = {"FileName":name, "FileType": type}
             #st.write(file_details)
             img = load_image(img_file_buffer)
+            features = rf.describe(img_file_buffer)
             st.success("Done!")
             with st.expander("Similaires"):
                 st.image(img, width=250)

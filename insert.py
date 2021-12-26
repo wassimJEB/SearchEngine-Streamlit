@@ -11,7 +11,13 @@ except:
     print('Could Not print')
 db=client.Index
 collection=db.Index
-
+path_col='C:/Users/21622/PycharmProjects/Index_Recherche/Color_descp/output1.txt'
+L=[]
+with open(path_col,'r') as f:
+    lines = f.readlines()
+for i in lines:
+    table.append(i.split())
+array_edge=np.array(table)
 path='C:/Users/21622/PycharmProjects/Index_Recherche/eh_descriptors'
 table=[]
 with open(path+ '/'+'eh'+str(1)+'.txt','r') as f:
